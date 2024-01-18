@@ -1,9 +1,9 @@
 package test.java.com.thoughtworks.wallet;
 
+import com.thoughtworks.wallet.Rupee;
 import main.java.com.thoughtworks.wallet.Wallet;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -11,39 +11,45 @@ import static org.hamcrest.Matchers.is;
 
 class WalletTest {
     @Test
-    void shouldReturnBalance0WhenWeInitializeTheWallet() throws IllegalArgumentException {
+    void shouldReturnBalance0WhenWeInitializeTheWallet() throws Exception {
+
         Wallet wallet = new Wallet();
 
-        double balance = wallet.balance();
+        Rupee balance = wallet.balance();
 
-        assertThat(balance, is(closeTo(0, 0)));
+        assertTrue(balance.equals(new Rupee(0)));
     }
 
     @Test
-    void shouldReturnBalance10WhenWeAdd10RupeesInTheWallet() throws IllegalArgumentException {
+    void shouldReturnBalance10WhenWeAdd10RupeesInTheWallet() throws Exception {
         Wallet wallet = new Wallet();
-        wallet.put(10);
+        wallet.put(new Rupee(10));
 
-        double balance = wallet.balance();
+        Rupee balance = wallet.balance();
 
-        assertThat(balance, is(closeTo(10, 0)));
+        boolean isEqual = balance.equals(new Rupee(10));
+
+        assertTrue(isEqual);
     }
 
     @Test
-    void shouldReturnBalance100WhenWeAdd50RupeesTwoTimesInTheWallet() throws IllegalArgumentException {
+    void shouldReturnBalance100WhenWeAdd50RupeesTwoTimesInTheWallet() throws Exception {
         Wallet wallet = new Wallet();
-        wallet.put(50);
-        wallet.put(50);
 
-        double balance = wallet.balance();
+        wallet.put(new Rupee(50));
+        wallet.put(new Rupee(50));
 
-        assertThat(balance, is(closeTo(100, 0)));
+        Rupee balance = wallet.balance();
+
+        boolean isEqual = balance.equals(new Rupee(100));
+
+        assertTrue(isEqual);
     }
 
     @Test
-    void shouldThrowExceptionWhenWeAddNegativeAmountInTheWallet() throws IllegalArgumentException {
+    void shouldThrowExceptionWhenWeAddNegativeAmountInTheWallet() throws Exception {
         Wallet wallet = new Wallet();
 
-        assertThrows(IllegalArgumentException.class, () -> wallet.put(-50));
+        assertThrows(Exception.class, () -> wallet.put(new Rupee(-10)));
     }
 }

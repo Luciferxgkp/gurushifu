@@ -1,18 +1,19 @@
 package main.java.com.thoughtworks.wallet;
 
+import com.thoughtworks.wallet.Rupee;
+
 public class Wallet {
-    private double balance;
+    private Rupee balance;
 
-    public Wallet() {
-        this.balance = 0;
+    public Wallet() throws Exception {
+        this.balance = new Rupee(0);
     }
 
-    public void put(double amount) throws IllegalArgumentException {
-        if (ValidateWallet.isValidAmount(amount))
-            this.balance += amount;
+    public void put(Rupee amount) throws Exception {
+        this.balance = Rupee.add(amount, balance);
     }
 
-    public double balance() {
+    public Rupee balance() {
         return balance;
     }
 
