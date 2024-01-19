@@ -14,7 +14,19 @@ public class Rupee {
     }
 
     @Override
-    public boolean equals(Rupee rupee) {
-        return rupee.value == this.value;
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
+        if (o == this)
+            return true;
+        if (!(o.getClass() == getClass()))
+            return false;
+        Rupee other = (Rupee) o;
+        return this.value == other.value;
+    }
+
+    @Override
+    public final int hashCode() {
+        return Double.valueOf(value).hashCode();
     }
 }
