@@ -12,7 +12,6 @@ import static org.hamcrest.Matchers.is;
 class WalletTest {
     @Test
     void shouldReturnBalance0WhenWeInitializeTheWallet() throws Exception {
-
         Wallet wallet = new Wallet();
 
         Rupee balance = wallet.balance();
@@ -24,7 +23,6 @@ class WalletTest {
     void shouldReturnBalance10WhenWeAdd10RupeesInTheWallet() throws Exception {
         Wallet wallet = new Wallet();
         wallet.put(new Rupee(10));
-
         Rupee balance = wallet.balance();
 
         boolean isEqual = balance.equals(new Rupee(10));
@@ -35,10 +33,8 @@ class WalletTest {
     @Test
     void shouldReturnBalance100WhenWeAdd50RupeesTwoTimesInTheWallet() throws Exception {
         Wallet wallet = new Wallet();
-
         wallet.put(new Rupee(50));
         wallet.put(new Rupee(50));
-
         Rupee balance = wallet.balance();
 
         boolean isEqual = balance.equals(new Rupee(100));
